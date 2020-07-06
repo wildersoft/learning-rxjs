@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { interval } from 'rxjs';
-import { take, map } from 'rxjs/operators';
+import { take, map, filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
   ngOnInit() : void {
 
     const numbers$ = interval(1000).pipe(
-      take(5), map(i => i * 10)
+      take(5), map(i => i * 10), filter(x=> x > 20)
     ).subscribe(x=> console.log(x));
   }
 
